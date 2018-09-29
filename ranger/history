@@ -1,0 +1,8 @@
+search 
+cd /usr/bin/android-studio
+cd /usr/bin/
+rename core_perl
+search a
+cd  ~
+cd .AndroidStudio2.3
+scout -ftsea 

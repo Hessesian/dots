@@ -1,0 +1,8 @@
+#!/bin/bash
+source "$HOME/Dropbox/Stuff/dots/secrets"
+
+darkskykey=$weather
+lat=$lat
+lng=$lng
+data=$(curl -s "https://api.darksky.net/forecast/"$darkskykey"/"$lat","$lng"?units=si&exclude=flags,minutely,hourly,daily,alerts" | grep -Po 'temperature":\K[[:digit:]]*')
+echo $data

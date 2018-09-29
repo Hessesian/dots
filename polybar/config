@@ -1,0 +1,313 @@
+[colors]
+foreground=#c2e68c
+background=#03061b 
+power=#c2e68c
+focused=#13233c
+unfocused=#000000
+
+red=#cc4a4a
+green=#90BD39
+yellow=#F09F41
+blue=#2A7ABE
+violet=#a763bb
+cyan=#18BEA8
+white=#fafafa
+
+[global/wm]
+margin-top        = 0
+margin-bottom     = 0
+override-redirect = true
+
+
+#█▓▒░
+#█▓▒░ Bar
+[bar/laptop]
+monitor             = ${env:MONITOR:eDP1}
+override-redirect   = true
+wm-restack          = bspwm
+width               = 100%
+height              = 25
+margin-top          = 0
+offset-x            = 0
+offset-y            = 0
+top                 = true
+fixed-center        = true
+background          = ${colors.background}
+foreground          = ${colors.foreground}
+font-0              = lucy tewi:style=Regular:size=9:antialias=true;0
+font-1              = FontAwesome:size=8;
+font-2              = Wuncon Siji:size=9;0
+font-3              = Lohit Hindi:size=8;
+font-4              = MesloLGS Nerd Font:size=8;
+modules-left        = bspwm xwindow
+modules-center      = spotify
+modules-right       = weather volume battery date powermenu 
+spacing             = 1
+padding-left        = 1
+padding-right       = 1
+scroll-up           = bspwm-desknext
+scroll-down         = bspwm-deskprev
+tray-detached = false
+tray-position = right
+tray-offset-x = 0
+tray-offset-y = 0
+tray-maxsize = 12
+tray-padding = 0
+tray-scale = 1
+tray-background = ${colors.background}
+
+
+#█▓▒░
+#█▓▒░ Bar - External Monitor
+[bar/external]
+monitor             = ${env:MONITOR:DP-0}
+override-redirect   = true
+wm-restack          = bspwm
+width               = 100%
+height              = 20
+margin-top          = 10
+offset-x            = 0
+offset-y            = 0
+top                 = true
+;bottom              = true
+fixed-center        = true
+background          = ${colors.background}
+foreground          = ${colors.foreground}
+font-0              = lucy tewi:style=Regularifica:size=11:antialias=true;0
+font-1              = FontAwesome:size=8;
+font-2              = Siji:size=9;
+font-3              = Lohit Hindi:size=9;
+font-4              = MesloLGS Nerd Font:size=8;
+modules-left        = powermenu bspwm
+modules-center      = spotibar
+modules-right       = weather volumeTV network eth date dropbox
+spacing             = 1
+padding-left        = 1
+padding-right       = 1
+scroll-up           = bspwm-desknext
+scroll-down         = bspwm-deskprev
+
+
+#█▓▒░
+#█▓▒░ bspwm Module
+[module/bspwm]
+type                      = internal/bspwm
+ws-icon-0 = I;
+ws-icon-1 = II;
+ws-icon-2 = III;
+ws-icon-3 = IV;
+ws-icon-4 = V;
+ws-icon-5 = VI;VI
+ws-icon-6 = VII;VII
+ws-icon-7 = VIII;VIII
+ws-icon-8 = IX;IX
+ws-icon-9 = X;X
+ws-icon-default = 
+
+pin-workspaces            = false
+enable-click              = true
+enable-scroll             = true
+reverse-scroll            = false
+label-focused             = %icon%
+label-focused-foreground  = ${colors.yellow}
+label-focused-padding     = 1
+label-focused-font        = 0
+label-occupied            = %icon%
+label-occupied-foreground = ${colors.power}
+label-occupied-padding    = 1
+label-occupied-font       = 0
+label-urgent              = %icon%
+label-urgent-foreground   = ${colors.yellow}
+label-urgent-padding      = 1
+label-urgent-font         = 0
+label-empty               = %icon%
+label-empty-foreground    = ${colors.white}
+label-empty-padding       = 1
+label-empty-font          = 0
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:120:...%
+label-padding = 4
+
+#█▓▒░
+#█▓▒░ Volume
+[module/volume]
+type                    = internal/alsa
+
+master-soundcard = default
+speaker-soundcard = default
+headphone-soundcard = default
+master-mixer = Master
+
+format-volume           = <ramp-volume><label-volume>
+format-volume-padding   = 2
+module-margin-right     = 0
+ramp-volume-0           = 
+ramp-volume-1           = 
+ramp-volume-2           = 
+ramp-volume-foreground  = ${colors.green}
+label-volume            = %percentage%
+label-muted-padding     = 2
+label-muted             = muted
+label-muted-foreground  = ${colors.green}
+
+
+#█▓▒░
+#█▓▒░ Volume - External
+[module/volumeTV]
+type                    = internal/alsa
+
+master-soundcard = default
+speaker-soundcard = default
+headphone-soundcard = default
+master-mixer = Master
+
+format-volume           = <ramp-volume><label-volume>
+format-volume-padding   = 2
+module-margin-right     = 0
+ramp-volume-0           = 
+ramp-volume-1           = 
+ramp-volume-2           = 
+ramp-volume-foreground  = ${colors.green}
+label-volume            = %percentage%
+label-muted-padding     = 2
+label-muted             = muted
+label-muted-foreground  = ${colors.green}
+
+
+#█▓▒░
+#█▓▒░ Date and Time
+[module/date]
+type                      = internal/date
+interval                  = 1
+date                      = ""
+date-alt                  = " %A %d %B"
+time                      = "%I:%M"
+time-alt                  = "%I:%M:%S"
+format-prefix             = 
+format-prefix-foreground  = ${colors.power}
+format-padding            = 2
+label                     = "%date% %time%"
+
+
+#█▓▒░
+#█▓▒░ Battery
+[module/battery]
+type = internal/battery
+
+; This is useful in case the battery never reports 100% charge
+full-at = 99
+
+; Use the following command to list batteries and adapters:
+; $ ls -1 /sys/class/power_supply/
+battery = BAT1
+adapter = ACAD
+poll-interval = 2
+
+time-format = %H:%M
+
+format-charging = <animation-charging><label-charging>
+format-discharging = <ramp-capacity><label-discharging>
+format-full = <ramp-capacity>
+
+; Available tokens:
+;   %percentage% (default)
+;   %time%
+;   %consumption% (shows current charge rate in watts)
+label-charging = %percentage%
+
+; Available tokens:
+;   %percentage% (default)
+;   %time%
+;   %consumption% (shows current discharge rate in watts)
+label-discharging = %time%
+
+; Only applies if <ramp-capacity> is used
+ramp-capacity-foreground  = ${colors.green}
+ramp-capacity-0 =
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+; Only applies if <animation-charging> is used
+animation-charging-foreground  = ${colors.green}
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-framerate = 1000
+
+
+#█▓▒░
+#█▓▒░ Power Menu
+[module/powermenu]
+type                        = custom/menu
+label-open                  =  
+label-open-foreground       = ${colors.power}
+label-open-background       = ${colors.background}
+label-open-padding          = 1
+label-close                 = ✖
+label-close-padding         = 1
+label-close-foreground      = ${colors.red}
+label-separator             = │
+label-separator-foreground  = ${colors.red}
+menu-0-0      = reboot
+menu-0-0-exec = menu-open-1
+menu-0-1      = poweroff
+menu-0-1-exec = menu-open-2
+menu-0-2      = logout
+menu-0-2-exec = menu-open-3
+menu-1-0      = ✖
+menu-1-0-exec = menu-open-0
+menu-1-1      = ✔
+menu-1-1-exec = systemctl reboot
+menu-2-0      = ✔
+menu-2-0-exec = systemctl poweroff
+menu-2-1      = ✖
+menu-2-1-exec = menu-open-0
+menu-3-0      = ✔
+menu-3-0-exec = bspc quit
+menu-3-1      = ✖
+menu-3-1-exec = menu-open-0
+
+
+#█▓▒░
+#█▓▒░ Backlight
+; To list available cards use: $ ls -1 /sys/class/backlight/
+[module/backlight]
+type              = internal/xbacklight
+card              = intel_backlight
+format            = <label>
+format-padding    = 0
+label             = 
+label-foreground  = ${colors.yellow}
+
+
+#█▓▒░
+#█▓▒░ Weather
+[module/weather]
+type                      = custom/script
+exec                      = ~/scripts/weather
+interval                  = 120
+format                    = <label>
+format-padding            = 0
+format-prefix             = " "
+format-suffix             = "°"
+format-prefix-foreground  = ${colors.foreground}
+format-background         = ${colors.background}
+click-left                = xdg-open https://darksky.net/
+tail                      = true
+
+
+#█▓▒░
+#█▓▒░ Spotibar
+[module/spotify]
+type = custom/script
+interval = 1
+format-prefix = ""
+format = <label>
+exec = python /home/ocel/scripts/spotify.py -f '{artist}: {song}'
+format-underline = #1db954
